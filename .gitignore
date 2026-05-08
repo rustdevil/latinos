@@ -1,4 +1,20 @@
 /limine-binary
 /edk2-ovmf
-*.iso
 *.hdd
+
+# Compiled Object files and Dependency files
+obj/
+*.o
+*.d
+
+# Binaries and Executables
+bin/
+myos
+*.elf
+*.bin
+
+# OS ISO related outputs
+*.iso
+iso_root/boot/myos
+# If you are downloading/generating Limine binaries during build:
+# iso_root/boot/limine/
