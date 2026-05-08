@@ -67,12 +67,7 @@ void kmain(void) {
 
     gradient_test();
 
-    for (uint32_t y = 0; y < 600; y += 16) {
-        draw_character('T', 0 + y, y);
-        draw_character('e', 8 + y, y);
-        draw_character('s', 16 + y, y);
-        draw_character('t', 24 + y, y);
-    }
+    primitive_fprint("Test line 1\nTest line 2");
 
     qprint("Done, halted.");
 

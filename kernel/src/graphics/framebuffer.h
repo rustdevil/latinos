@@ -8,4 +8,6 @@ void gradient_test(void);
 
 void draw_pixel(uint32_t x, uint32_t y, uint32_t color);
 
+int screen_dimensions(char d);
+
 #endif

@@ -65,3 +65,13 @@ void draw_pixel(uint32_t x, uint32_t y, uint32_t color) {
 
     fb_ptr[(y * (framebuffer->pitch / 4)) + x] = color;
 }
+
+int screen_dimensions(char d) {
+    if (d == 'w') {
+        return framebuffer->width;
+    } else if (d == 'h') {
+        return framebuffer->height;
+    } else {
+        return -1;
+    }
+}
