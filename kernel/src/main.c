@@ -1,0 +1,75 @@
+#include <stdint.h> // For stuff like uint64_t
+#include <stddef.h>
+#include <stdbool.h>
+#include "panic.h"
+#include "graphics/framebuffer.h"
+#include "graphics/character/character.h"
+
+// Memory functions.
+
+// Copy memory from src to destination.
+// restrict means we trust that dest and src do not overlap.
+void *memcpy(void *restrict dest, const void *restrict src, size_t n) {
+    uint8_t *restrict pdest = dest;
+    const uint8_t *restrict psrc = src;
+
+    for (size_t i = 0; i < n; i++) {
+        pdest[i] = psrc[i];
+    }
+
+    return dest;
+}
+
+void *memset(void *dest, int value, size_t n) {
+    uint8_t *pdest = dest;
+
+    for (size_t i = 0; i < n; i++) {
+        pdest[i] = (uint8_t)value;
+    }
+
+    return dest;
+}
+
+void *memmove(void *dest, const void *src, size_t n) {
+    uint8_t *pdest = dest;
+    const uint8_t *psrc = src;
+
+    if ((uintptr_t)src > (uintptr_t)dest) {
+        for (size_t i = 0; i < n; i++) {
+            pdest[i] = psrc[i];
+        }
+    } else if ((uintptr_t)src < (uintptr_t)dest) {
+        for (size_t i = n; i > 0; i--) {
+            pdest[i-1] = psrc[i-1];
+        }
+    }
+
+    return dest;
+}
+
+int memcmp(const void *s1, const void *s2, size_t n) {
+    const uint8_t *p1 = s1;
+    const uint8_t *p2 = s2;
+
+    for (size_t i = 0; i < n; i++) {
+        if (p1[i] != p2[i]) {
+            return p1[i] < p2[i] ? -1 : 1;
+        }
+    }
+
+    return 0;
+}
+
+// Kernel's entry point
+void kmain(void) {
+    framebuffer_init();
+
+    gradient_test();
+
+    draw_character('B', 0, 0);
+    draw_character('A', 9, 0);
+    draw_character('D', 17, 0);
+
+    // We're done, just hang...
+    hcf();
+}
