@@ -4,6 +4,7 @@
 #include "panic.h"
 #include "graphics/framebuffer.h"
 #include "graphics/character/character.h"
+#include "com/debugcon.h"
 
 // Memory functions.
 
@@ -66,9 +67,14 @@ void kmain(void) {
 
     gradient_test();
 
-    draw_character('B', 0, 0);
-    draw_character('A', 9, 0);
-    draw_character('D', 17, 0);
+    for (uint32_t y = 0; y < 600; y += 16) {
+        draw_character('T', 0 + y, y);
+        draw_character('e', 8 + y, y);
+        draw_character('s', 16 + y, y);
+        draw_character('t', 24 + y, y);
+    }
+
+    qprint("Done, halted.");
 
     // We're done, just hang...
     hcf();

@@ -180,7 +180,7 @@ clean-iso:
 
 .PHONY: run
 run: iso
-	qemu-system-x86_64 -cdrom $(ISO_IMAGE) -boot d -m 256M
+	qemu-system-x86_64 -cdrom $(ISO_IMAGE) -boot d -m 256M -debugcon stdio
 
 .PHONY: run-uefi
 run-uefi: iso

@@ -1,6 +1,7 @@
 #include "framebuffer.h"
 #include "../limine.h"
 #include "../panic.h"
+#include "../com/debugcon.h"
 
 #include <stdint.h> // For stuff like uint64_t
 #include <stddef.h>
@@ -26,6 +27,8 @@ __attribute__((used, section(".limine_requests_end")))
 static volatile uint64_t limine_requests_end[] = LIMINE_REQUESTS_END_MARKER;
 
 void framebuffer_init(void) {
+    qprint("Initializing framebuffer...");
+
     // Ensure bootloader understands our base spec.
     if (!LIMINE_BASE_REVISION_SUPPORTED(limine_base_revision)) {
         hcf();
@@ -40,6 +43,8 @@ void framebuffer_init(void) {
 }
 
 void gradient_test(void) {
+    qprint("Running gradient test...");
+
     // Draw gradient on the framebuffer
     volatile uint32_t *fb_ptr = framebuffer->address;
     uint8_t intensity = 0;
