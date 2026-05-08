@@ -15,6 +15,6 @@ myos
 
 # OS ISO related outputs
 *.iso
-iso_root/boot/myos
+iso_root/
 # If you are downloading/generating Limine binaries during build:
 # iso_root/boot/limine/
