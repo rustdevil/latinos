@@ -1,7 +1,7 @@
 #include "framebuffer.h"
-#include "../limine.h"
-#include "../panic.h"
-#include "../com/debugcon.h"
+#include "limine.h"
+#include "panic.h"
+#include "com/debugcon.h"
 
 #include <stdint.h> // For stuff like uint64_t
 #include <stddef.h>
@@ -68,12 +68,20 @@ void draw_pixel(uint32_t x, uint32_t y, uint32_t color) {
     fb_ptr[(y * (framebuffer->pitch / 4)) + x] = color;
 }
 
-int screen_dimensions(char d) {
-    if (d == 'w') {
-        return framebuffer->width;
-    } else if (d == 'h') {
-        return framebuffer->height;
+struct ScreenDimensions screen_dimensions() {
+    struct ScreenDimensions d;
+
+    if (framebuffer != NULL) {
+        d.w = framebuffer->width;
+        d.h = framebuffer->height;
+        d.status = SUCCESS;
+
+        return d;
     } else {
-        return -1;
+        d.w = 0;
+        d.h = 0;
+        d.status = FAIL;
+
+        return d;
     }
 }

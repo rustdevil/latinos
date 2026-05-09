@@ -1,8 +1,8 @@
 #include "character.h"
-#include "../../com/debugcon.h"
 #define FONT8x16_IMPLEMENTATION
 #include "font8x16.h"
-#include "../framebuffer.h"
+#include "graphics/framebuffer.h"
+#include "panic.h"
 #include <stdint.h>
 
 void draw_character(uint8_t c, uint32_t x, uint32_t y) {
@@ -23,8 +23,13 @@ void draw_character(uint8_t c, uint32_t x, uint32_t y) {
 
 // Primitive print string function that does not acknowledge existing text on screen and just prints.
 void p_fprint(char c[]) {
-    const uint16_t SCREEN_WIDTH = screen_dimensions('w') / 8;
-    const uint16_t SCREEN_HEIGHT = screen_dimensions('h') / 16;
+    const struct ScreenDimensions d = screen_dimensions();
+    if (d.status == FAIL) {
+        hcf();
+    }
+
+    const uint16_t SCREEN_WIDTH = d.w / 8;
+    // const uint16_t SCREEN_HEIGHT = d.h / 16;
 
     uint16_t printer_location[2] = { 0, 0 };
 
