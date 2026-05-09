@@ -1,7 +1,7 @@
 #include <stdint.h> // For stuff like uint64_t
 #include <stddef.h>
 #include <stdbool.h>
-#include "panic.h"
+#include "core/panic.h"
 #include "graphics/framebuffer.h"
 #include "graphics/character/character.h"
 #include "com/debugcon.h"

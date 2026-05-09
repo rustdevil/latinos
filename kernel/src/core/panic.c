@@ -1,4 +1,4 @@
-#include "panic.h"
+#include "core/panic.h"
 
 // Halt and catch fire function.
 void hcf(void) {

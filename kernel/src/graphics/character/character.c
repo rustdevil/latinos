@@ -2,7 +2,7 @@
 #define FONT8x16_IMPLEMENTATION
 #include "font8x16.h"
 #include "graphics/framebuffer.h"
-#include "panic.h"
+#include "core/panic.h"
 #include <stdint.h>
 
 void draw_character(uint8_t c, uint32_t x, uint32_t y) {

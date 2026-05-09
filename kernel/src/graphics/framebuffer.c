@@ -1,6 +1,6 @@
 #include "framebuffer.h"
 #include "limine.h"
-#include "panic.h"
+#include "core/panic.h"
 #include "com/debugcon.h"
 
 #include <stdint.h> // For stuff like uint64_t
