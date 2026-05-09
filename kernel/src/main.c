@@ -67,9 +67,21 @@ void kmain(void) {
 
     gradient_test();
 
-    primitive_fprint("Test line 1\nTest line 2");
+    char character_set[130];
 
-    qprint("Done, halted.");
+    qprint("Populating character set with characters");
+    int i = 0;
+    for (char c = 0x01; c <= 0x7E; c++) {
+        character_set[i] = c;
+        i++;
+    }
+    character_set[i] = '\0';
+
+    qprint("Printing character test");
+    p_fprint(character_set);
+    p_fprint("\n\n\nLatinOS v0.1.0-dev\n");
+
+    qprint("\nDone, halted.\n\n");
 
     // We're done, just hang...
     hcf();

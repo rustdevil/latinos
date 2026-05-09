@@ -4,6 +4,6 @@
 
 void draw_character(uint8_t c, uint32_t x, uint32_t y);
 
-void primitive_fprint(char c[]);
+void p_fprint(char c[]);
 
 #endif

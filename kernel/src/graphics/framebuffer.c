@@ -58,6 +58,8 @@ void gradient_test(void) {
         }
         intensity += 5;
     }
+
+
 }
 
 void draw_pixel(uint32_t x, uint32_t y, uint32_t color) {
