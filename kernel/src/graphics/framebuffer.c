@@ -31,12 +31,12 @@ void framebuffer_init(void) {
 
     // Ensure bootloader understands our base spec.
     if (!LIMINE_BASE_REVISION_SUPPORTED(limine_base_revision)) {
-        hcf();
+        panic("Limine base revision unsupported");
     }
 
     // Ensure we got a framebuffer.
     if (framebuffer_request.response == NULL || framebuffer_request.response->framebuffer_count < 1) {
-        hcf();
+        panic("Houston, we don't got a framebuffer");
     }
 
     framebuffer = framebuffer_request.response->framebuffers[0];

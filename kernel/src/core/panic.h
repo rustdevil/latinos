@@ -3,4 +3,6 @@
 
 void hcf(void);
 
+void panic(char c[]);
+
 #endif

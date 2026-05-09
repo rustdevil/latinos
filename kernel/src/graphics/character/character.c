@@ -25,7 +25,7 @@ void draw_character(uint8_t c, uint32_t x, uint32_t y) {
 void p_fprint(char c[]) {
     const struct ScreenDimensions d = screen_dimensions();
     if (d.status == FAIL) {
-        hcf();
+        panic("Failed to get screen dimensions");
     }
 
     const uint16_t SCREEN_WIDTH = d.w / 8;
