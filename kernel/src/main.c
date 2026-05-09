@@ -1,6 +1,7 @@
 #include <stdint.h> // For stuff like uint64_t
 #include <stddef.h>
 #include <stdbool.h>
+#include "string.h"
 #include "core/panic.h"
 #include "graphics/framebuffer.h"
 #include "graphics/character/character.h"
@@ -64,6 +65,10 @@ int memcmp(const void *s1, const void *s2, size_t n) {
 // Kernel's entry point
 void kmain(void) {
     framebuffer_init();
+
+    char src_str[] = "Hello";
+    char dest_str[128] = "World";
+    qprint(strcat(dest_str, src_str));
 
     gradient_test();
 
