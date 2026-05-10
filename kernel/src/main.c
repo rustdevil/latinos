@@ -88,8 +88,10 @@ void kmain(void) {
 
     draw_3d_rect(650, 150, 400, 250);
     for (int i = 0; i <= 125; i += 25) {
-        draw_window(200 + i, 100 + i, 400, 250, "400x250 window");
+        draw_window(600 + i, 100 + i, 400, 250, "400x250 window");
     }
+
+    draw_window(50, 100, 400, 250, "400x250 window");
 
     draw_window(500, 500, 50, 50, "50x50 window Overflow testttttttttttttttttttttttt");
     // draw_rect(203, 128, 400, 250, 0xFFFF0000);
