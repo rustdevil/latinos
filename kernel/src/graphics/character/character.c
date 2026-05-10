@@ -13,7 +13,7 @@ void draw_character(uint8_t c, uint32_t x, uint32_t y) {
             uint8_t mask = (1 << lx);
 
             if (row & mask) {
-                draw_pixel(x + (7 - lx), y + ly, 0xFFFFFFFF);
+                draw_pixel(x + (7 - lx), y + ly, 0xFFDDDDDD);
             } else {
                 draw_pixel(x + (7 - lx), y + ly, 0x00000000);
             }
