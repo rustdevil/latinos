@@ -48,16 +48,13 @@ void gradient_test(void) {
 
     // Draw gradient on the framebuffer
     volatile uint32_t *fb_ptr = framebuffer->address;
-    uint8_t intensity = 0;
-    while (intensity < UINT8_MAX) {
-        for (size_t y = 0; y < framebuffer->height; y++) {
-            for (size_t x = 0; x < framebuffer->width; x++) {
-                uint32_t nX = x * intensity / framebuffer->width;
-                uint32_t nY = y * intensity / framebuffer->height;
-                fb_ptr[y * (framebuffer->pitch / 4) + x] = ((nY << 8) | nX);
-            }
+
+    for (size_t y = 0; y < framebuffer->height; y++) {
+        for (size_t x = 0; x < framebuffer->width; x++) {
+            uint32_t nX = x * 255 / framebuffer->width;
+            uint32_t nY = y * 255 / framebuffer->height;
+            fb_ptr[y * (framebuffer->pitch / 4) + x] = ((nY << 8) | nX);
         }
-        intensity += 5;
     }
 }
 
