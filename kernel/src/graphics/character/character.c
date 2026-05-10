@@ -1,13 +1,14 @@
 #include "character.h"
-#define FONT8x16_IMPLEMENTATION
-#include "font8x16.h"
 #include "graphics/framebuffer.h"
 #include "core/panic.h"
+#include "font.h"
 #include <stdint.h>
 
+extern const unsigned char __font_bitmap__[];
 void draw_character(uint8_t c, uint32_t x, uint32_t y, uint32_t color, uint8_t t) {
+    const unsigned char *glyph_ptr = &__font_bitmap__[c * 16];
     for (int ly = 0; ly < 16; ly++) {
-        uint8_t row = font8x16[c][ly];
+        uint8_t row = glyph_ptr[ly];
 
         for (int lx = 7; lx >= 0; lx--) {
             uint8_t mask = (1 << lx);
@@ -42,9 +43,11 @@ void p_fprint(char c[]) {
             // Reset the printer location and go to next line
             printer_location[0] = 0;
             printer_location[1] += 16;
-            c++;
             char_num = 0;
-            continue;
+            if (*c == '\n') {
+                c++; // Only skip the newline character itself
+                continue;
+            }
         }
         draw_character(*c, printer_location[0], printer_location[1], 0xFFDDDDDD, 0);
         printer_location[0] += 8;
