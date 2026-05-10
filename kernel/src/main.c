@@ -86,11 +86,13 @@ void kmain(void) {
     p_fprint(character_set);
     p_fprint("\n\n\nLatinOS v0.1.0-dev\n");
 
-    draw_rect(200, 100, 400, 250, 0xFFD0D0FF);
-    draw_rect(202, 102, 396, 25, 0xFF0011CC);
-    draw_text("A Window?", 207, 107, 0xFFFFFFFF);
-    draw_text("Where is your GDT?", 207, 137, 0x00111111);
-    draw_line(100, 250, 350, 0xFFFF0000);
+    draw_3d_rect(650, 150, 400, 250);
+    for (int i = 0; i <= 125; i += 25) {
+        draw_window(200 + i, 100 + i, 400, 250, "400x250 window");
+    }
+
+    draw_window(500, 500, 50, 50, "50x50 window Overflow testttttttttttttttttttttttt");
+    // draw_rect(203, 128, 400, 250, 0xFFFF0000);
 
     qprint("\nDone, halted.\n\n");
 

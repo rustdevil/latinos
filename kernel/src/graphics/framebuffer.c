@@ -76,9 +76,41 @@ void draw_line(uint32_t x, uint32_t y, uint32_t length, uint32_t color) {
     }
 }
 
-void draw_rect(uint32_t x, uint32_t y, uint32_t length, uint32_t width, uint32_t color) {
-    for (uint32_t i = 0; i <= width; i++) {
+// Draw a vertical line.
+void draw_v_line(uint32_t x, uint32_t y, uint32_t length, uint32_t color) {
+    for (uint32_t i = 0; i <= length; i++) {
+        draw_pixel(x, y + i, color);
+    }
+}
+
+void draw_rect(uint32_t x, uint32_t y, uint32_t length, uint32_t height, uint32_t color) {
+    for (uint32_t i = 0; i <= height; i++) {
         draw_line(x, y + i, length, color);
+    }
+}
+
+// Draw a rect with a border
+void draw_3d_rect(uint32_t x, uint32_t y, uint32_t length, uint32_t height) {
+    draw_rect(x, y, length, height, 0xFFD0D0D0);
+
+    // Top side
+    for (uint32_t i = 0; i < 3; i++) {
+        draw_line(x, y + i, length - (i * 2), 0xFFFFFFFF);
+    }
+
+    // Left side
+    for (uint32_t i = 0; i < 3; i++) {
+        draw_v_line(x + i, y + i, height - (i * 2), 0xFFAAAAAA);
+    }
+
+    // Bottom side
+    for (uint32_t i = 0; i < 3; i++) {
+        draw_line(x + i, y + height - i, length - (i * 2), 0xFF505050); // FAAAHHHHHHHH
+    }
+
+    // Right side
+    for (uint32_t i = 0; i < 3; i++) {
+        draw_v_line(x + length - i, y + i, height - (i * 2), 0xFFAAAAAA);
     }
 }
 
@@ -89,6 +121,17 @@ void draw_text(char *text, uint32_t x, uint32_t y, uint32_t color) {
         offset += 9; // Font width is 8
         text++;
     }
+}
+
+void draw_window(uint32_t x, uint32_t y, uint32_t length, uint32_t height, char *title) {
+    const int title_y_size = 25;
+
+    draw_3d_rect(x, y, length + 6, height + 6 + title_y_size);
+    draw_rect(x + 3, y + 3, length, title_y_size, 0xFF0011BB);
+    draw_rect(x + length - 25 + 3, y + 3, 25, 25, 0xFFCC0000); // Close btn
+    //draw_3d_rect(x + length - 50 + 3, y + 3, 25, 25); // Minimize btn
+    draw_text(title, x + 10, y + 10, 0xFF00115A);
+    draw_text(title, x + 10, y + 8, 0xFFFFFFFF);
 }
 
 struct ScreenDimensions screen_dimensions() {
