@@ -5,7 +5,7 @@
 #include "core/panic.h"
 #include <stdint.h>
 
-void draw_character(uint8_t c, uint32_t x, uint32_t y) {
+void draw_character(uint8_t c, uint32_t x, uint32_t y, uint32_t color, uint8_t t) {
     for (int ly = 0; ly < 16; ly++) {
         uint8_t row = font8x16[c][ly];
 
@@ -13,9 +13,11 @@ void draw_character(uint8_t c, uint32_t x, uint32_t y) {
             uint8_t mask = (1 << lx);
 
             if (row & mask) {
-                draw_pixel(x + (7 - lx), y + ly, 0xFFDDDDDD);
+                draw_pixel(x + (7 - lx), y + ly, color);
             } else {
-                draw_pixel(x + (7 - lx), y + ly, 0x00000000);
+                if (t == 0) {
+                    draw_pixel(x + (7 - lx), y + ly, 0x00000000);
+                }
             }
         }
     }
@@ -44,7 +46,7 @@ void p_fprint(char c[]) {
             char_num = 0;
             continue;
         }
-        draw_character(*c, printer_location[0], printer_location[1]);
+        draw_character(*c, printer_location[0], printer_location[1], 0xFFDDDDDD, 0);
         printer_location[0] += 8;
 
         c++;

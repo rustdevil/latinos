@@ -86,6 +86,12 @@ void kmain(void) {
     p_fprint(character_set);
     p_fprint("\n\n\nLatinOS v0.1.0-dev\n");
 
+    draw_rect(200, 100, 400, 250, 0xFFD0D0FF);
+    draw_rect(202, 102, 396, 25, 0xFF0011CC);
+    draw_text("A Window?", 207, 107, 0xFFFFFFFF);
+    draw_text("Where is your GDT?", 207, 137, 0x00111111);
+    draw_line(100, 250, 350, 0xFFFF0000);
+
     qprint("\nDone, halted.\n\n");
 
     // We're done, just hang...

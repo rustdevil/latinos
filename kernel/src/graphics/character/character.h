@@ -2,7 +2,7 @@
 #define CHARACTER_H
 #include <stdint.h>
 
-void draw_character(uint8_t c, uint32_t x, uint32_t y);
+void draw_character(uint8_t c, uint32_t x, uint32_t y, uint32_t color, uint8_t t);
 
 void p_fprint(char c[]);
 

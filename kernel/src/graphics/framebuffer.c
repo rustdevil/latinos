@@ -1,4 +1,5 @@
 #include "framebuffer.h"
+#include "graphics/character/character.h"
 #include "limine.h"
 #include "core/panic.h"
 #include "com/debugcon.h"
@@ -58,14 +59,36 @@ void gradient_test(void) {
         }
         intensity += 5;
     }
-
-
 }
+
+// Drawing functions.
 
 void draw_pixel(uint32_t x, uint32_t y, uint32_t color) {
     volatile uint32_t *fb_ptr = framebuffer->address;
 
     fb_ptr[(y * (framebuffer->pitch / 4)) + x] = color;
+}
+
+// Draw a horizontal line.
+void draw_line(uint32_t x, uint32_t y, uint32_t length, uint32_t color) {
+    for (uint32_t i = 0; i <= length; i++) {
+        draw_pixel(x + i, y, color);
+    }
+}
+
+void draw_rect(uint32_t x, uint32_t y, uint32_t length, uint32_t width, uint32_t color) {
+    for (uint32_t i = 0; i <= width; i++) {
+        draw_line(x, y + i, length, color);
+    }
+}
+
+void draw_text(char *text, uint32_t x, uint32_t y, uint32_t color) {
+    uint32_t offset = 0;
+    while (*text != '\0') {
+        draw_character(*text, x + offset, y, color, 1);
+        offset += 9; // Font width is 8
+        text++;
+    }
 }
 
 struct ScreenDimensions screen_dimensions() {
