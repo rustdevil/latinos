@@ -66,9 +66,10 @@ void clear_screen(void) {
 // Drawing functions.
 
 void draw_pixel(uint32_t x, uint32_t y, uint32_t color) {
-    volatile uint32_t *fb_ptr = framebuffer->address;
-
-    fb_ptr[(y * (framebuffer->pitch / 4)) + x] = color;
+    if (x < framebuffer->width && y < framebuffer->height) {
+        volatile uint32_t *fb_ptr = framebuffer->address;
+        fb_ptr[(y * (framebuffer->pitch / 4)) + x] = color;
+    }
 }
 
 // Draw a horizontal line.

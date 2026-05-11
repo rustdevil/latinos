@@ -41,7 +41,7 @@ void kmain(void) {
         draw_window(600 + i, 100 + i, 400, 250, "400x250 window");
     }
 
-    draw_window(50, 100, 400, 250, "400x250 window");
+    draw_window(50, 100, 400, 5000, "Clipping test (height 5000)");
 
     draw_window(500, 500, 50, 50, "50x50 window Overflow testttttttttttttttttttttttt");
     // draw_rect(203, 128, 400, 250, 0xFFFF0000);
