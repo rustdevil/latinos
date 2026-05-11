@@ -6,6 +6,7 @@
 #include "graphics/framebuffer.h"
 #include "graphics/character/character.h"
 #include "com/debugcon.h"
+#include "core/gdt.h"
 
 // Memory functions.
 
@@ -65,6 +66,9 @@ int memcmp(const void *s1, const void *s2, size_t n) {
 // Kernel's entry point
 void kmain(void) {
     framebuffer_init();
+
+    qprint("Initializing GDT");
+    gdt_init();
 
     char src_str[] = "Hello";
     char dest_str[128] = "World";
