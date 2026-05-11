@@ -121,7 +121,7 @@ void draw_text(char *text, uint32_t x, uint32_t y, uint32_t color) {
     uint32_t offset = 0;
     while (*text != '\0') {
         draw_character(*text, x + offset, y, color, 1);
-        offset += 9; // Font width is 8
+        offset += 8; // Font width is 8
         text++;
     }
 }
