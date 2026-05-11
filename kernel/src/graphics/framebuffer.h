@@ -7,6 +7,8 @@
 void framebuffer_init(void);
 void gradient_test(void);
 
+void clear_screen(void);
+
 void draw_pixel(uint32_t x, uint32_t y, uint32_t color);
 void draw_line(uint32_t x, uint32_t y, uint32_t length, uint32_t color);
 void draw_rect(uint32_t x, uint32_t y, uint32_t length, uint32_t height, uint32_t color);

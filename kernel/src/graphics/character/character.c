@@ -1,4 +1,5 @@
 #include "character.h"
+#include "core/error.h"
 #include "graphics/framebuffer.h"
 #include "core/panic.h"
 #include "font.h"
@@ -25,7 +26,7 @@ void draw_character(uint8_t c, uint32_t x, uint32_t y, uint32_t color, uint8_t t
 }
 
 // Primitive print string function that does not acknowledge existing text on screen and just prints.
-void p_fprint(char c[]) {
+void p_fprint(char c[], uint32_t color) {
     const struct ScreenDimensions d = screen_dimensions();
     if (d.status == FAIL) {
         panic("Failed to get screen dimensions");
@@ -49,7 +50,7 @@ void p_fprint(char c[]) {
                 continue;
             }
         }
-        draw_character(*c, printer_location[0], printer_location[1], 0xFFDDDDDD, 0);
+        draw_character(*c, printer_location[0], printer_location[1], color, 0);
         printer_location[0] += 8;
 
         c++;

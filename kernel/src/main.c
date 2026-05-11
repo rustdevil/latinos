@@ -33,8 +33,8 @@ void kmain(void) {
     character_set[i] = '\0';
 
     qprint("Printing character test");
-    p_fprint(character_set);
-    p_fprint("\n\n\nLatinOS v0.1.0-dev\n");
+    p_fprint(character_set, 0xFFFFFFFF);
+    p_fprint("\n\n\nLatinOS v0.1.0-dev\n", 0xFFFFFFFF);
 
     draw_3d_rect(650, 150, 400, 250);
     for (int i = 0; i <= 125; i += 25) {

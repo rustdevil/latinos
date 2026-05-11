@@ -3,6 +3,7 @@
 #include "limine.h"
 #include "core/panic.h"
 #include "com/debugcon.h"
+#include "core/memory.h"
 
 #include <stdint.h> // For stuff like uint64_t
 #include <stddef.h>
@@ -37,7 +38,7 @@ void framebuffer_init(void) {
 
     // Ensure we got a framebuffer.
     if (framebuffer_request.response == NULL || framebuffer_request.response->framebuffer_count < 1) {
-        panic("Houston, we don't got a framebuffer");
+        panic("No framebuffer");
     }
 
     framebuffer = framebuffer_request.response->framebuffers[0];
@@ -56,6 +57,10 @@ void gradient_test(void) {
             fb_ptr[y * (framebuffer->pitch / 4) + x] = ((nY << 8) | nX);
         }
     }
+}
+
+void clear_screen(void) {
+    memset(framebuffer->address, 0x00000000, framebuffer->width * framebuffer->height * sizeof(uint32_t));
 }
 
 // Drawing functions.
