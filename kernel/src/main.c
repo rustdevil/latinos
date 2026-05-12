@@ -1,4 +1,3 @@
-#include <stdint.h> // For stuff like uint64_t
 #include <stddef.h>
 #include <stdbool.h>
 #include "core/panic.h"
@@ -16,7 +15,6 @@ void kmain(void) {
 
     // Window tests
 
-    draw_3d_rect(650, 150, 400, 250);
     for (int i = 0; i <= 125; i += 25) {
         draw_window(600 + i, 100 + i, 400, 250, "LatinOS 400x250 window");
     }
