@@ -1,10 +1,12 @@
 #ifndef FRAMEBUFFER_H
 #define FRAMEBUFFER_H
 
+#include <stdbool.h>
 #include <stdint.h>
 #include "core/error.h"
 
 void framebuffer_init(void);
+bool has_a_framebuffer();
 void gradient_test(void);
 
 void clear_screen(void);

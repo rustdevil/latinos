@@ -1,4 +1,5 @@
 #include "gdt.h"
+#include "com/debugcon.h"
 #include <stdint.h>
 #include <sys/cdefs.h>
 
@@ -15,6 +16,7 @@ void gdt_set_entry(int i, uint8_t access, uint8_t flags) {
 }
 
 void gdt_init() {
+    qprint("Initializing GDT...\n");
     gdt_set_entry(0, 0, 0); // Null descriptor
     gdt_set_entry(1, 0x9A, 0x20);
     gdt_set_entry(2, 0x92, 0x00);

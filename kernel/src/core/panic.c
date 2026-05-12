@@ -2,34 +2,31 @@
 #include "com/debugcon.h"
 #include "graphics/character/character.h"
 #include "graphics/framebuffer.h"
-#include "string.h"
 #include "memory.h"
 
 // Halt and catch fire function.
 void hcf(void) {
+    asm ("cli"); // Disable interrupts
     for (;;) {
         asm ("hlt");
     }
 }
 
-int panic_count = 0;
-void panic(char *c) {
-    // If we panic while panicking, just halt.
-    if (panic_count > 0) {
-        hcf();
-    }
 
-    panic_count++;
-    clear_screen();
+void panic(char *msg) {
+    asm volatile ("cli");
 
-    char text[1024] = "*** Fatal Error *** (LatinOS)\nPANIC: ";
+    static int nesting = 0;
+    if (nesting > 0) hcf();
+    nesting++;
 
-    if (strlen(text) + strlen(c) + 1 <= 1024) {
-        qprint(strcat(text, c));
-        p_fprint(text, 0x00FF0000);
-    } else {
-        qprint("PANIC: system panicked, too many characters in panic message");
-        p_fprint("PANIC: (too many characters)", 0x00FF0000);
+    qprint("\nPANIC: ");
+    qprint(msg);
+
+    if (has_a_framebuffer()) {
+        p_fprint("*** Kernel Panic ***\n", 0xFFFFFFFF);
+        p_fprint("panic: ", 0xFFFF1111);
+        p_fprint(msg, 0xFFFFFFFF);
     }
 
     hcf();

@@ -6,7 +6,6 @@ static inline void qemu_putc(char c) {
 }
 
 static inline void qprint(const char *s) {
-    qemu_putc('\n');
     while (*s != '\0') {
         qemu_putc(*s);
         s++;

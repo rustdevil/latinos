@@ -33,11 +33,9 @@ void p_fprint(char c[], uint32_t color) {
     }
 
     const uint16_t SCREEN_WIDTH = d.w / 8;
-    // const uint16_t SCREEN_HEIGHT = d.h / 16;
 
-    uint16_t printer_location[2] = { 0, 0 };
-
-    uint16_t char_num = 0;
+    static uint16_t printer_location[2] = { 0, 0 };
+    static uint16_t char_num = 0;
 
     while (*c != '\0') {
         if (*c == '\n' || char_num >= SCREEN_WIDTH) {

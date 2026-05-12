@@ -29,7 +29,7 @@ __attribute__((used, section(".limine_requests_end")))
 static volatile uint64_t limine_requests_end[] = LIMINE_REQUESTS_END_MARKER;
 
 void framebuffer_init(void) {
-    qprint("Initializing framebuffer...");
+    qprint("Initializing framebuffer...\n");
 
     // Ensure bootloader understands our base spec.
     if (!LIMINE_BASE_REVISION_SUPPORTED(limine_base_revision)) {
@@ -44,8 +44,15 @@ void framebuffer_init(void) {
     framebuffer = framebuffer_request.response->framebuffers[0];
 }
 
+bool has_a_framebuffer() {
+    if (framebuffer == NULL) {
+        return false;
+    }
+    return true;
+}
+
 void gradient_test(void) {
-    qprint("Running gradient test...");
+    qprint("Running gradient test...\n");
 
     // Draw gradient on the framebuffer
     volatile uint32_t *fb_ptr = framebuffer->address;
