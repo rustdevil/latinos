@@ -1,4 +1,4 @@
-#include "framebuffer.h"
+#include "graphics/framebuffer.h"
 #include "graphics/character/character.h"
 #include "limine.h"
 #include "core/panic.h"

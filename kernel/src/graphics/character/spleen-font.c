@@ -12,7 +12,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-#include "font.h"
+#include "graphics/character/font.h"
 
 	/// character bitmap for each encoding
 const unsigned char __font_bitmap__[] = {

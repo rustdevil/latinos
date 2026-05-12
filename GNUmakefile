@@ -35,8 +35,9 @@ ifeq ($(TOOLCHAIN),llvm)
     LD := ld.lld
 endif
 
+COMPILER_HEADERS := $(shell $(CC) -print-file-name=include)
 # User controllable C flags.
-CFLAGS := -g -O2 -pipe -I./src
+CFLAGS := -g -O2 -pipe -nostdinc -isystem $(COMPILER_HEADERS) -Ikernel/include
 
 # User controllable C preprocessor flags. We set none by default.
 CPPFLAGS :=

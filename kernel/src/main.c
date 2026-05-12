@@ -5,7 +5,7 @@
 #include "graphics/framebuffer.h"
 #include "com/debugcon.h"
 #include "core/gdt.h"
-#include "memory.h" // IWYU pragma: keep
+#include "core/memory.h" // IWYU pragma: keep
 
 // Kernel's entry point
 void kmain(void) {

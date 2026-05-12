@@ -1,7 +1,6 @@
-#include "gdt.h"
+#include "core/gdt.h"
 #include "com/debugcon.h"
 #include <stdint.h>
-#include <sys/cdefs.h>
 
 struct GDT gdt;
 struct GDTPointer gdt_ptr;

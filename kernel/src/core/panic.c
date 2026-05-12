@@ -2,7 +2,6 @@
 #include "com/debugcon.h"
 #include "graphics/character/character.h"
 #include "graphics/framebuffer.h"
-#include "memory.h"
 
 // Halt and catch fire function.
 void hcf(void) {

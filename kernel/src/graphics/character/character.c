@@ -1,8 +1,8 @@
-#include "character.h"
+#include "graphics/character/character.h"
 #include "core/error.h"
 #include "graphics/framebuffer.h"
 #include "core/panic.h"
-#include "font.h"
+#include "graphics/character/font.h"
 #include <stdint.h>
 
 extern const unsigned char __font_bitmap__[];
